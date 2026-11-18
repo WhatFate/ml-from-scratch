@@ -11,6 +11,17 @@ def _sigmoid(z):
     return result
 
 class MyLogisticRegression:
+    """Binary logistic regression trained with gradient descent (log loss).
+
+    Parameters:
+        lr: learning rate.
+        n_iters: number of gradient descent steps.
+
+    Attributes (after fit):
+        w: weights, shape (n,).
+        b: bias, a single number.
+        losses: log loss on each iteration, list of length n_iters.
+    """
     
     def __init__(self, lr=0.1, n_iters=1000):
         self.lr = lr
@@ -20,6 +31,8 @@ class MyLogisticRegression:
         self.losses = []
         
     def predict_proba(self, X):
+        """Probability of class 1. X: (m, n). Returns array of shape (m,)."""
+        
         if self.w is None:
             raise ValueError("Model is not fitted yet. Call fit() first.")
         z = X @ self.w + self.b
@@ -51,6 +64,7 @@ class MyLogisticRegression:
         return self
     
     def predict(self, X, threshold=0.5):
+        """Predict classes 0/1 by threshold. X: (m, n). Returns int array of shape (m,)."""
         p = self.predict_proba(X)
         mask = p >= threshold
         
