@@ -41,4 +41,3 @@ class MyLinearRegression:
     def predict(self, X):
         """Predict values. X: (m, n). Returns array of shape (m,)."""
         return X @ self.w + self.b 
-
