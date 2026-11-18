@@ -35,6 +35,6 @@ class MajorityBaseline:
 
     def predict(self, X):
         """Predict the stored class. X: (m, n). Returns array of shape (m,)."""
-        if self.mean == None:
+        if self.majority == None:
             raise ValueError("Model is not fitted yet. Call fit() first.")
         return np.full(X.shape[0], self.majority)
